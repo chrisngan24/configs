@@ -1,0 +1,76 @@
+" Begin /etc/vimrc
+
+set nocompatible
+
+
+set incsearch
+set ruler
+set et
+set sw=2
+set smarttab
+set expandtab
+set number
+set backspace=indent,eol,start
+set scrolloff=5
+syntax on
+set t_Co=256
+filetype on
+filetype indent on
+filetype plugin on
+set title
+runtime macros/matchit.vim
+set wildmenu
+set wildmode=list:longest
+set encoding=utf-8
+if (&term == "iterm" ) || (&term == "putty" )
+  set background=light
+endif
+
+set background=light
+
+
+" no swap files
+set nobackup
+set nowb
+set noswapfile
+
+
+" TUrn off f1 = Help
+:nmap <F1> :echo<CR>
+:imap <F1> <C-o>:echo<CR>
+
+" Autosave
+:au FocusLost * :wa
+
+" enable mouse support in console
+set mouse=a
+
+"  Syntax for different file types
+augroup filetypedetect 
+  au BufNewFile,BufRead *.pig set filetype=pig syntax=pig 
+  au BufNewFile,BufRead *.ftl set filetype=ftl syntax=ftl 
+  au BufNewFile,BufRead *.r set filetype=r syntax=r
+  au BufNewFile,BufRead *.less set filetype=less
+  au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
+  au BufNewFile,BufRead *.md set filetype=markdown syntax=markdown
+
+augroup END 
+"  Command P
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+
+let NERDTreeShowLineNumbers=1
+set t_Co=16
+
+" Key bindings
+map <F2> :nohls<CR>
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Return to last edit position when opening files
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \   exe "normal! g`\"" |
+     \ endif
+" 4nd /etc/vimrc
