@@ -1,17 +1,39 @@
 " Begin /etc/vimrc
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-set nocompatible
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+  Plugin 'gmarik/Vundle.vim'
+  Plugin 'kien/ctrlp.vim'
+  Plugin 'derekwyatt/vim-scala'
+  Plugin 'mileszs/ack.vim'
+  Plugin 'scrooloose/syntastic'
+
+" End vundle
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+set nocompatible " Use vim defaults instead of vi defaults (much better!)
 
 
-set incsearch
+set hlsearch      " Search: Highlight matches
+set incsearch     " Search: Match as you type
+
+nnoremap <silent> <C-l> :nohl<CR><C-l> " <Ctrl-l> redraws the screen and removes any search highlighting.
 set ruler
 set et
 set sw=2
 set smarttab
 set expandtab
+set showmatch " when hovering over a (){}[], highlights matching bracket
 set number
+set pastetoggle=<F2> " toggles paste mode (lets you paste without messing up indentation
 set backspace=indent,eol,start
-set scrolloff=5
 syntax on
 set t_Co=256
 filetype on
@@ -26,7 +48,7 @@ if (&term == "iterm" ) || (&term == "putty" )
   set background=light
 endif
 
-set background=light
+set background=dark
 
 
 " no swap files
@@ -53,14 +75,9 @@ augroup filetypedetect
   au BufNewFile,BufRead *.less set filetype=less
   au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
   au BufNewFile,BufRead *.md set filetype=markdown syntax=markdown
-
 augroup END 
-"  Command P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
 
 
-let NERDTreeShowLineNumbers=1
-set t_Co=16
 
 " Key bindings
 map <F2> :nohls<CR>
@@ -74,3 +91,7 @@ autocmd BufReadPost *
      \   exe "normal! g`\"" |
      \ endif
 " 4nd /etc/vimrc
+"
+"
+
+
