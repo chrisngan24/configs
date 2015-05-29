@@ -28,6 +28,8 @@ nnoremap <silent> <C-l> :nohl<CR><C-l> " <Ctrl-l> redraws the screen and removes
 set ruler
 set et
 set sw=2
+" Set tabw=4 for python
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set smarttab
 set expandtab
 set showmatch " when hovering over a (){}[], highlights matching bracket
