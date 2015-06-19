@@ -1,0 +1,29 @@
+Docs: http://cnswww.cns.cwru.edu/~chet/readline/readline.html
+
+# tab complete without regard to lower/uppercase (default: off)
+set completion-ignore-case on
+
+# show possible completions the first time you hit tab (default: off)
+set show-all-if-ambiguous on
+
+# never ring the terminal bell (default: audible)
+set bell-style none
+
+# append a slash to completed directory names (default: on)
+set mark-directories on
+
+# append a slash to completed symlinks to directories (requires mark-directories) (default: off)
+set mark-symlinked-directories on
+
+# show each completion with a special character denoting the file's type (default: off)
+set visible-stats on
+
+# choose your own adventure (default: emacs)
+set editing-mode vi
+
+set keymap vi-insert
+"\C-o": insert-completions
+
+set keymap vi-command
+"j": history-search-forward
+"k": history-search-backward
