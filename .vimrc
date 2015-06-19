@@ -10,6 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
   Plugin 'gmarik/Vundle.vim'
   Plugin 'kien/ctrlp.vim'
+
   Plugin 'derekwyatt/vim-scala'
   Plugin 'mileszs/ack.vim'
   Plugin 'scrooloose/syntastic'
@@ -18,6 +19,12 @@ call vundle#begin()
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+" Ctrl-P Customization
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
 set nocompatible " Use vim defaults instead of vi defaults (much better!)
 
 
@@ -28,7 +35,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l> " <Ctrl-l> redraws the screen and removes
 set ruler
 set et
 set sw=2
-" Set tabw=4 for python
+" Set tab =4 for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 set smarttab
 set expandtab
@@ -97,3 +104,24 @@ autocmd BufReadPost *
 "
 
 
+" ctrlp
+set wildignore+=*.o,*.pyc,*.pyo,*.hi,*.hi-boot,*.class,*.jar
+set wildignore+=*.png,*.gif,*.jpg,*.pdf,*.ps
+set wildignore+=_darcs/**
+set wildignore+=**/target/*       " mvn/sbt
+set wildignore+=**/build/*
+"set runtimepath^=~/.vim/bundle/ctrlp.vim
+"helptags ~/.vim/bundle/ctrlp.vim/doc
+"let g:ctrlp_map             = '<localleader>ff'
+"let g:ctrlp_match_window    = 'top,order:ttb,min:1,max:20'
+"let g:ctrlp_prompt_mappings = {
+"  \ 'AcceptSelection("e")': ['<c-t>'],
+"    \ 'AcceptSelection("t")': ['<cr>'],
+"      \ }
+"      map <localleader>fr :CtrlPClearCache<cr>
+"      "map <localleader>ft :CtrlPTag<cr> " Insanely slow with global tags
+"      file
+"      map <localleader>ft :CtrlPBufTagAll<cr>
+"      let g:ctrlp_buftag_types = {
+"        \ 'scala' : '--language-force=scala',
+"          \ } 
