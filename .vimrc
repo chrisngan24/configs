@@ -88,8 +88,6 @@ augroup END
 
 
 
-" Key bindings
-map <F2> :nohls<CR>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
@@ -110,18 +108,3 @@ set wildignore+=*.png,*.gif,*.jpg,*.pdf,*.ps
 set wildignore+=_darcs/**
 set wildignore+=**/target/*       " mvn/sbt
 set wildignore+=**/build/*
-"set runtimepath^=~/.vim/bundle/ctrlp.vim
-"helptags ~/.vim/bundle/ctrlp.vim/doc
-"let g:ctrlp_map             = '<localleader>ff'
-"let g:ctrlp_match_window    = 'top,order:ttb,min:1,max:20'
-"let g:ctrlp_prompt_mappings = {
-"  \ 'AcceptSelection("e")': ['<c-t>'],
-"    \ 'AcceptSelection("t")': ['<cr>'],
-"      \ }
-"      map <localleader>fr :CtrlPClearCache<cr>
-"      "map <localleader>ft :CtrlPTag<cr> " Insanely slow with global tags
-"      file
-"      map <localleader>ft :CtrlPBufTagAll<cr>
-"      let g:ctrlp_buftag_types = {
-"        \ 'scala' : '--language-force=scala',
-"          \ } 
