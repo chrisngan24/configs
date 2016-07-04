@@ -14,10 +14,27 @@ call vundle#begin()
   Plugin 'derekwyatt/vim-scala'
   Plugin 'mileszs/ack.vim'
   Plugin 'scrooloose/syntastic'
+  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+
+  " Python specific
+  Plugin 'davidhalter/jedi-vim'
+  Plugin 'Yggdroot/indentLine'
+  Plugin 'scrooloose/nerdtree'
+
+
 
 " End vundle
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+
+
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
 
 
 " Ctrl-P Customization
@@ -82,7 +99,7 @@ augroup filetypedetect
   au BufNewFile,BufRead *.ftl set filetype=ftl syntax=ftl 
   au BufNewFile,BufRead *.r set filetype=r syntax=r
   au BufNewFile,BufRead *.less set filetype=less
-  au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
+  " au BufNewFile,BufRead *.scala set filetype=scala syntax=scala
   au BufNewFile,BufRead *.md set filetype=markdown syntax=markdown
 augroup END 
 
@@ -108,3 +125,32 @@ set wildignore+=*.png,*.gif,*.jpg,*.pdf,*.ps
 set wildignore+=_darcs/**
 set wildignore+=**/target/*       " mvn/sbt
 set wildignore+=**/build/*
+
+
+
+
+" Syntastic
+let g:syntastic_mode_map = { "mode": "active",
+                           \ "active_filetypes": ["python"],
+                           \ "passive_filetypes": ["scala"] }
+
+" Omnicomplete
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+
+" Vim
+let g:indentLine_color_term = 239
+
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+let g:indentLine_char = '|'
+set conceallevel=1
+let g:indentLine_conceallevel=1
+
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
